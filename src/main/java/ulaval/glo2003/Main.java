@@ -10,7 +10,11 @@ import java.net.URI;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ResourceConfig resourceConfig = new ResourceConfig();
+        RootResource root = new RootResource();
+        PingPongResource pingPong = new PingPongResource();
+        ResourceConfig resourceConfig = new ResourceConfig()
+                .register(root)
+                .register(pingPong);
         URI uri = URI.create("http://localhost:8080/");
 
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);
