@@ -12,9 +12,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
         RootResource root = new RootResource();
         PingPongResource pingPong = new PingPongResource();
+        GlobalExceptionMapper globalExceptionMapper = new GlobalExceptionMapper();
+        IllegalArgumentExceptionMapper illegalArgumentExceptionMapper = new IllegalArgumentExceptionMapper();
         ResourceConfig resourceConfig = new ResourceConfig()
                 .register(root)
-                .register(pingPong);
+                .register(pingPong)
+                .register(globalExceptionMapper)
+                .register(illegalArgumentExceptionMapper);
         URI uri = URI.create("http://localhost:8080/");
 
         HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, resourceConfig);

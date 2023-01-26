@@ -6,8 +6,15 @@ import jakarta.ws.rs.core.Response;
 
 @Path("")
 public class RootResource {
+    @Path("error1")
     @GET
-    public Response root() {
-        return Response.ok("OK").build();
+    public Response error1() {
+        throw new IllegalArgumentException("Illegal argument exception!");
+    }
+
+    @Path("error2")
+    @GET
+    public Response error2() {
+        throw new RuntimeException("Runtime exception!");
     }
 }
